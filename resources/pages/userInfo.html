@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="../css/userInfo.css">
+    <link rel="stylesheet" href="../fonts/iconfont.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 导航栏 -->
+    <div class="nav-box">
+        <div class="w">
+            <!-- logo模块 -->
+            <div class="logo-box"></div>
+            <!-- 导航标签模块 -->
+            <div class="tag-box">
+                <ul>
+                    <li><a href="http://127.0.0.1/index" class="title">首页</a></li>
+                    <li><a href="http://127.0.0.1/tv">电视剧</a></li>
+                    <li><a href="http://127.0.0.1/movie">电影</a></li>
+                    <li><a href="http://127.0.0.1/anime">动漫</a></li>
+                    <li><a href="#" class="vipstyle">会员中心</a></li>
+                    <li><a href="http://127.0.0.1/videos">全部</a></li>
+                </ul>
+            </div>
+            <div class="side-box">
+                <!-- 搜索模块 -->
+                <div class="search">
+                    <input type="text" placeholder="ikun">
+                    <button>搜索</button>
+                </div>
+                <!-- 右边导航栏模块 -->
+                <div class="items">
+                    <div id="itemsicon">
+                        <span class="iconfont icon-vip" title="VIP会员"></span>
+                        <span class="iconfont icon-lishijilu" title="历史记录"></span>
+                    </div>
+                    <!-- 用户模块 -->
+                    <div class="usermodel">
+                        <div id="usermodel1">
+                            <a href="http://127.0.0.1/login" id="user"><img src="../img/用户头像.jpg" alt=""></a>
+                            <ul>
+                                <li><a href="" id="exit">退出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="user_div">
+
+        <div class="user_navigate">
+            <!-- 用户信息侧 -->
+            <div class="user_info">
+
+
+                <!-- 头像 -->
+                <div class="user_head_portrait">
+                    <img src="" alt="" class="avatar_pic">
+                </div>
+                <!-- 用户名 -->
+                <div class="user_name">
+                    <span class="_name">zkx</span>
+                </div>
+                <!-- 会员信息 -->
+                <div class="user_vip">
+                    <a href="#">vip666</a>
+                    <button title="续费" class="btn_vip">续费</button>
+                </div>
+            </div>
+            <!-- 个人信息 -->
+            <div class="personal_info">
+                <a href="#" class="personal_info_link">
+                    <img src="../img/个人信息.svg" alt="" width="30" height="25"> 个人信息</a>
+            </div>
+            <!-- 历史记录 -->
+            <div class="personal_info">
+                <a href="#" class="personal_info_link">
+                    <img src="../img/观看历史.svg" alt="" width="30" height="25"> 观看历史</a>
+            </div>
+            <!-- VIP会员 -->
+            <div class="personal_info">
+                <a href="#" class="personal_info_link">
+                    <img src="../img/vip.svg" alt="" width="30" height="25"> VIP会员</a>
+            </div>
+            <!-- 收藏 -->
+            <div class="personal_info">
+                <a href="#" class="personal_info_link">
+                    <img src="../img/收藏.svg" alt="" width="30" height="25"> 收藏</a>
+            </div>
+            <!-- 订阅 -->
+            <div class="personal_info">
+                <a href="#" class="personal_info_link">
+                    <img src="../img/订阅.svg" alt="" width="30" height="25"> 订阅</a>
+            </div>
+
+        </div>
+        <!-- 修改密码模态框 -->
+        <div class="modal fade" id="changePwdModal" tabindex="-1" aria-labelledby="changePwdLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePwdLabel" style="letter-spacing:2px;">修改密码</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">输入新密码</label>
+                                <input type="password" class="form-control" id="inputPassword" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">确认密码</label>
+                                <input type="password" class="form-control" id="confirmPassword" required="required">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-5 col-3" id="changePwdConfirm">确认修改</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="_info">
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">邮箱 :</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" style="Outline:none"
+                        value="">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticNickName" class="col-sm-2 col-form-label">昵称 :</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticNickName" style="Outline:none"
+                        value="">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticUserName" class="col-sm-2 col-form-label">用户名 :</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticUserName" style="Outline:none"
+                        value="">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticPhone" class="col-sm-2 col-form-label">手机号码 :</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticPhone" style="Outline:none"
+                        value="">
+                </div>
+            </div>
+
+            <label for="staticSex" class="col-sm-2 col-form-label">性别 :</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                    value="option1">
+                <label class="form-check-label" for="inlineRadio1">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                    value="option2">
+                <label class="form-check-label" for="inlineRadio2">女</label>
+            </div>
+            <div class="mb-3 row">
+            </div>
+            <div class="mb-3 row">
+                <label for="exampleFormControlTextarea1" class="form-label" style="width: 186px;padding-top: 8px;">我的签名
+                    :</label>
+                <textarea class="form-control-plaintext" id="exampleFormControlTextarea1" readonly rows="3"
+                    style="width: 900px;margin-left: 12px;color: red;Outline:none"></textarea>
+            </div>
+            <div class="mb-12">
+                <button type="button" class="btn btn-primary" id="updateBtn"
+                    style="width: 90px;position: relative;left: 180px;top: 40px;">修改信息</button>
+                <button type="button" class="btn btn-primary" id="changePwd"
+                    style="width: 90px;position: relative;left: 400px;top: 40px;" data-bs-toggle="modal"
+                    data-bs-target="#changePwdModal">修改密码</button>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+        <div class="footer-content w">
+            <p>关于我们</p>
+            <ul>
+                <li><a href="#" target="_blank">公司介绍</a>
+                    <a href="#" target="_blank">联系方式</a>
+                </li>
+                <li><a href="#" target="_blank">新闻动态</a>
+                    <a href="#" target="_blank">诚聘英才</a>
+                </li>
+            </ul>
+            <div class="footer-content-text1">潮是广州基尼太美网络科技有限公司旗下的在线视频平台</div>
+            <div class="footer-content-text2">Copyright © 2022 潮 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ajaxSend(function (e, xhr, option) {
+        if (sessionStorage.getItem('token') != null)
+            xhr.setRequestHeader('Authorization', sessionStorage.getItem('token'))
+    })
+    // 获取当前登陆用户的token
+    var token = sessionStorage.getItem('token');
+    // 用户头像注册事件
+    var userImg = document.querySelector('.user_head_portrait>img')
+    var userInfo = document.querySelector('#usermodel1>a')
+    var userimg = document.querySelector('#usermodel1>a>img')
+    var userInfo1 = document.querySelector('#usermodel1>ul')
+    // 用户信息注册事件
+    var staticEmail = document.querySelector('#staticEmail')
+    var staticNickName = document.querySelector('#staticNickName')
+    var exampleFormControlTextarea1 = document.querySelector('#exampleFormControlTextarea1')
+    var staticUserName = document.querySelector('#staticUserName')
+    var staticPhone = document.querySelector('#staticPhone')
+    var staticSex = document.querySelectorAll('.form-check.form-check-inline')
+    var inlineRadio1 = document.querySelector('#inlineRadio1')
+    var inlineRadio2 = document.querySelector('#inlineRadio2')
+    // 修改密码模态框
+    var changePwdModal = new bootstrap.Modal(document.getElementById('changePwdModal'), {
+        keyboard: false
+    })
+    // 退出登陆
+    var exit = document.querySelector('#exit')
+    // 用户信息的处理
+    $.ajax({
+        url: 'http://127.0.0.1/getLoginUser',
+        type: 'POST',
+        data: { token },
+        dataType: 'json',
+        success: function (res) {
+            console.log(res.data);
+            if (res.code == 0) {
+                staticEmail.value = res.data.email
+                staticNickName.value = res.data.nickname
+                staticUserName.value = res.data.username
+                staticPhone.value = res.data.phone
+                exampleFormControlTextarea1.value = res.data.mysignature
+                if (res.data.sex == '男') {
+                    inlineRadio1.checked = true;
+                    // inlineRadio1.style.display = 'none';
+                    staticSex[1].style.display = 'none';
+                } else if (res.data.sex == '女') {
+                    inlineRadio2.checked = true;
+                    // inlineRadio2.style.display = 'none';
+                    staticSex[0].style.display = 'none';
+                }
+                userImg.src = res.data.img;
+                userimg.src = res.data.img;
+                userInfo.href = 'http://127.0.0.1/userInfo'
+                userInfo.addEventListener("mouseover", function () {
+                    this.nextElementSibling.style.display = 'block';
+                })
+                addEventListener("click", function () {
+                    userInfo1.style.display = 'none';
+                })
+                exit.addEventListener('click', function () {
+                    sessionStorage.removeItem('token')
+                    exit.href = 'http://127.0.0.1/login';
+                })
+            }
+            else {
+                alert('找不到该用户')
+            }
+        },
+        error: function () {
+            alert('你还未登陆,点击确定跳转登陆界面')
+            window.location.href = 'http://127.0.0.1/login';
+        }
+    })
+    // 修改信息注册事件
+    var updateBtn = document.querySelector('#updateBtn');
+    var flag = 0;
+    // 修改信息绑定事件
+    updateBtn.onclick = function () {
+        var staticNickNameval = $('#staticNickName').val()
+        var exampleFormControlTextarea1val = $('#exampleFormControlTextarea1').val()
+        var nickname = staticNickNameval
+        var mysignature = exampleFormControlTextarea1val
+        var sex = 0;
+        if (flag == 0) {
+            staticNickName.removeAttribute('readonly');
+            staticNickName.className = 'form-control';
+            exampleFormControlTextarea1.removeAttribute('readonly');
+            exampleFormControlTextarea1.className = 'form-control';
+            staticSex[0].style.display = null;
+            staticSex[1].style.display = null;
+            updateBtn.innerHTML = '保存';
+            flag = 1;
+        } else {
+            if (inlineRadio1.checked == true) {
+                sex = '男';
+                staticSex[1].style.display = 'none';
+            } else if (inlineRadio2.checked == true) {
+                sex = '女';
+                staticSex[0].style.display = 'none';
+            }
+            $(staticNickName).attr('readonly', '');
+            staticNickName.className = 'form-control-plaintext';
+            $(exampleFormControlTextarea1).attr('readonly', '');
+            exampleFormControlTextarea1.className = 'form-control-plaintext';
+            updateBtn.innerHTML = '修改信息';
+            flag = 0;
+            $.ajax({
+                url: 'http://127.0.0.1/changeInfo',
+                type: 'POST',
+                data: { token, nickname, mysignature, sex },
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 0) {
+                        console.log('修改成功')
+                    }
+                    else {
+                        alert('权限验证失败')
+                    }
+                },
+                error: function () {
+                    console.log('权限验证失败')
+                }
+            })
+            event.preventDefault();
+        }
+
+    }
+    // 修改密码注册事件
+    var changePwdConfirm = document.querySelector('#changePwdConfirm');
+    // 修改密码绑定事件
+    changePwdConfirm.onclick = function () {
+        var inputPassword = $('#inputPassword').val()//.value
+        var confirmPassword = $('#confirmPassword').val()
+        var changePwd = confirmPassword;
+        if (inputPassword == confirmPassword) {
+            $.ajax({
+                url: 'http://127.0.0.1/changePwd',
+                type: 'POST',
+                data: { token, changePwd },
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 0) {
+                        alert('修改成功')
+                        changePwdModal.hide();
+                    }
+                    else {
+                        alert('权限验证失败')
+                    }
+                },
+                error: function () {
+                    console.log('权限验证失败')
+                }
+            })
+            event.preventDefault();
+        }
+        else {
+            alert('密码不一致,请再确认密码')
+        }
+    }
+</script>

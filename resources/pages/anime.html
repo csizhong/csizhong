@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动漫</title>
+    <link rel="stylesheet" href="../css/anime.css">
+    <link rel="stylesheet" href="../fonts/iconfont.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav-box">
+        <div class="w">
+            <!-- logo模块 -->
+            <div class="logo-box"></div>
+            <!-- 导航标签模块 -->
+            <div class="tag-box">
+                <ul>
+                    <li><a href="http://127.0.0.1/index" class="title">首页</a></li>
+                    <li><a href="http://127.0.0.1/tv">电视剧</a></li>
+                    <li><a href="http://127.0.0.1/movie">电影</a></li>
+                    <li><a href="http://127.0.0.1/anime">动漫</a></li>
+                    <li><a href="#" class="vipstyle">会员中心</a></li>
+                    <li><a href="http://127.0.0.1/videos">全部</a></li>
+                </ul>
+            </div>
+            <div class="side-box">
+                <!-- 搜索模块 -->
+                <div class="search">
+                    <input type="text" placeholder="ikun">
+                    <button>搜索</button>
+                </div>
+                <!-- 右边导航栏模块 -->
+                <div class="items">
+                    <div id="itemsicon">
+                        <span class="iconfont icon-vip" title="VIP会员"></span>
+                        <span class="iconfont icon-lishijilu" title="历史记录"></span>
+                    </div>
+                    <!-- 用户模块 -->
+                    <div class="usermodel">
+                        <div id="usermodel1">
+                            <a href="http://127.0.0.1/login" id="user"><img src="../img/用户头像.jpg" alt=""></a>
+                            <ul>
+                                <li><a href="" id="exit">退出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 动漫类 -->
+    <div class="w">
+        <h2>动漫</h2>
+        <div class="anime-box">
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+        <div class="footer-content w">
+            <p>关于我们</p>
+            <ul>
+                <li><a href="">公司介绍</a>
+                    <a href="">联系方式</a>
+                </li>
+                <li><a href="">新闻动态</a>
+                    <a href="">诚聘英才</a>
+                </li>
+            </ul>
+            <div class="footer-content-text1">潮是广州基尼太美网络科技有限公司旗下的在线视频平台</div>
+            <div class="footer-content-text2">Copyright © 2022 潮 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script>
+    var typename = document.querySelector('h2');
+    var videotype = typename.innerHTML;//类型名
+    var divs = document.querySelector('.anime-box').querySelectorAll('div');
+    var imgs = document.querySelector('.anime-box').querySelectorAll('img');
+    var links = document.querySelector('.anime-box').querySelectorAll('a');
+    var sets = document.querySelector('.anime-box').querySelectorAll('div>span>p');
+    var views = document.querySelector('.anime-box').querySelectorAll('div>p');
+    var i = 0
+
+
+    $.ajax({
+        url: 'http://127.0.0.1/getType',
+        type: 'POST',
+        data: { videotype },
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == 0) {
+                for (let j = 0; j < res.data.length; j++) {
+                    $("<div><a href=><img src= alt=></a><span><a href=''></a><p></p></span><p></p></div >").appendTo('.anime-box');
+                }
+                divs = document.querySelector('.anime-box').querySelectorAll('div');
+                imgs = document.querySelector('.anime-box').querySelectorAll('div>a>img');
+                imgslinks = document.querySelector('.anime-box').querySelectorAll('div>a');
+                links = document.querySelector('.anime-box').querySelectorAll('div>span>a');
+                sets = document.querySelector('.anime-box').querySelectorAll('div>span>p');
+                views = document.querySelector('.anime-box').querySelectorAll('div>p');
+
+                res.data.forEach(function (element) {
+                    imgs[i].src = element.videoimg;
+                    imgslinks[i].href = element.videolink;
+                    links[i].innerHTML = element.videoname;
+                    links[i].href = element.videolink;
+                    sets[i].innerHTML = element.videoepisodes;
+                    views[i].innerHTML = '播放量:' + element.videoview;
+                    i++
+                });
+            }
+            else {
+                console.log('出错了')
+            }
+        },
+        error: function () {
+            console.log('出错了')
+        }
+    })
+
+    var inputSearch = document.querySelector('.search').querySelector('input');
+    var searchBtn = document.querySelector('.search').querySelector('button');
+    console.log(inputSearch);
+
+    searchBtn.onclick = function (event) {
+        var videoname = $(inputSearch).val()//.value
+        console.log(videoname);
+        $.ajax({
+            url: 'http://127.0.0.1/getOneVideo',
+            type: 'POST',
+            data: { videoname },
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 0) {
+                    window.location.href = '' + res.data.videolink;
+                }
+                else {
+                    alert('找不到该视频')
+                }
+            },
+            error: function () {
+                console.log('出错了')
+            }
+        })
+        event.preventDefault();
+    }
+
+    var userInfo = document.querySelector('#usermodel1>a')
+    var userimg = document.querySelector('#usermodel1>a>img')
+    var userInfo1 = document.querySelector('#usermodel1>ul')
+    //用户头像
+    $(document).ajaxSend(function (e, xhr, option) {
+        if (sessionStorage.getItem('token') != null)
+            xhr.setRequestHeader('Authorization', sessionStorage.getItem('token'))
+    })
+    var token = sessionStorage.getItem('token');
+    $.ajax({
+        url: 'http://127.0.0.1/getLoginUser',
+        type: 'POST',
+        data: { token },
+        dataType: 'json',
+        success: function (res) {
+            console.log(res.data);
+            if (res.code == 0) {
+                userimg.src = res.data.img;
+                userInfo.href = 'http://127.0.0.1/userInfo'
+                userInfo.addEventListener("mouseover", function () {
+                    this.nextElementSibling.style.display = 'block';
+                })
+                addEventListener("click", function () {
+                    userInfo1.style.display = 'none';
+                })
+                exit.addEventListener('click', function () {
+                    sessionStorage.removeItem('token')
+                    exit.href = 'http://127.0.0.1/login';
+                })
+            }
+            else {
+                alert('找不到该用户')
+            }
+        },
+        error: function () {
+            console.log('出错了')
+        }
+    })
+
+</script>
